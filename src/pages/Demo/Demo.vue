@@ -4,10 +4,8 @@
   <!-- <div v-if="post.loading">Loading POST!</div> -->
   <!-- <div v-else>{{post.result && post.result.body}}</div> -->
   <child :msg="msg" v-if="toggle"></child>
-  <br>
-  ===========
-  <br>
-  <button @click="toggle = !toggle">Hide</button>
+  <br>============<br>
+  <el-button @click="toggle = !toggle">Hide</el-button>
   <h1>{{count}}</h1>
   <h1>{{double}}</h1>
   <button @click="addCount"><h1>Add!</h1></button>
@@ -19,6 +17,7 @@
 <script lang="ts">
 import { defineComponent, ref, reactive, computed, toRefs, onMounted } from 'vue'
 import { Child } from './components'
+import { getCatalogTree } from '@/services/indicator.service'
 // import useURLLoader from './useURLLoader'
 // interface PostProps {
 //   userId: number;
@@ -38,7 +37,8 @@ export default defineComponent({
   components: {
     Child
   },
-  setup () {
+  setup() {
+
     const count = ref(0)
     const msg = ref('hello')
     const addCount = () => {
@@ -59,8 +59,10 @@ export default defineComponent({
     })
     const person2 = toRefs(person)
 
-    onMounted(() => {
+    onMounted(async () => {
       console.log('------onMounted-----')
+      const topicTree = await getCatalogTree('6')
+      console.log(topicTree)
     })
 
     return {
