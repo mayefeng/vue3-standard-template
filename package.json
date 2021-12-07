@@ -1,6 +1,6 @@
 {
-  "name": "vue3-test2",
-  "version": "0.1.0",
+  "name": "<%= className %>",
+  "version": "<%= version %>",
   "private": true,
   "scripts": {
     "prepare": "husky install",
